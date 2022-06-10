@@ -68,7 +68,7 @@ export const NFTProvider = ({ children }) => {
     }
   };
 
-  const createSale = async (url, formInputPrice) => {
+  const createSale = async (url, formInputPrice, isReselling, id) => {
     const web3Modal = new Web3Modal();
     const connection = await web3Modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
@@ -81,12 +81,25 @@ export const NFTProvider = ({ children }) => {
     const transaction = await contract.createToken(url, price, { value: listingPrice.toString() });
 
     await transaction.wait();
+  };
+  const fetchNFTs = async () => {
+    const provider = new ethers.providers.JsonRpcProvider();
+    const contract = fetchContract(provider);
+    const data = await contract.fetchMarketItems();
 
-    // console.log(contract);
+    const items = await Promise.all(data.map(async ({ tokenId, seller, owner, price: unformattedPrice }) => {
+      const tokenURI = await contract.tokenURI(tokenId);
+      const { data: { image, name, description } } = await axios.get(tokenURI);
+      const price = ethers.utils.formatUnits(unformattedPrice.toString(), 'ether');
+
+      return { price, tokenId: tokenId.toNumber(), seller, owner, image, name, description, tokenURI };
+    }));
+
+    return items;
   };
 
   return (
-    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT }}>
+    <NFTContext.Provider value={{ nftCurrency, connectWallet, currentAccount, uploadToIPFS, createNFT, fetchNFTs }}>
       { children }
     </NFTContext.Provider>
   );
