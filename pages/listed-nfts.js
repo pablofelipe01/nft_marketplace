@@ -6,7 +6,7 @@ import { Loader, NFTCard } from '../components';
 const ListedNFTs = () => {
   const { fetchMyNFTsOrListedNFTs } = useContext(NFTContext);
   const [nfts, setNfts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetchMyNFTsOrListedNFTs('fetchItemsListed')
