@@ -4,8 +4,19 @@ import Image from 'next/image';
 
 import { NFTContext } from '../context/NFTContext';
 import { shortenAddress } from '../utils/shortenAddress';
-import { Button, Loader, NFTCard } from '../components';
+import { Button, Loader, Modal, NFTCard } from '../components';
 import images from '../assets';
+
+const PaymentBodyCmp = ({ nft, nftCurrency }) => (
+  <div className="flex flex-col">
+    <div className="flexBetween">
+      <p className="font-poppins dark:text-white text-nft-black-1 font-semibold text-base minlg:text-xl">Item</p>
+      <p className="font-poppins dark:text-white text-nft-black-1 font-semibold text-base minlg:text-xl">Subtotal</p>
+    </div>
+
+  </div>
+
+);
 
 const NFTDetails = () => {
   const { currentAccount, nftCurrency } = useContext(NFTContext);
@@ -70,6 +81,16 @@ const NFTDetails = () => {
 
         </div>
       </div>
+      <Modal
+        header="Check Out"
+        body={<PaymentBodyCmp nft={nft} nftCurrency={nftCurrency} />}
+        footer={(
+          <div className="flex flex-row sm:flex-col">
+            Custom Footer
+          </div>
+        )}
+        handleClose={() => {}}
+      />
     </div>
 
   );
