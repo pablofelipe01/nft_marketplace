@@ -7,9 +7,18 @@ import images from '../assets';
 import { shortenAddress } from '../utils/shortenAddress';
 
 const MyNFTs = () => {
-  const { fetchMyNFTsOrCreatedNFTs, currentAccount } = useContext(NFTContext);
+  const { fetchMyNFTsOrListedNFTs, currentAccount } = useContext(NFTContext);
   const [nfts, setNfts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    fetchMyNFTsOrListedNFTs()
+      .then((items) => {
+        setNfts(items);
+        setNfts(items);
+        setIsLoading(false);
+      });
+  }, []);
 
   if (isLoading) {
     return (
@@ -44,7 +53,7 @@ const MyNFTs = () => {
             search Bar
           </div>
           <div className="mt-3 w-full flex flex-wrap">
-            {nfts.map((nft) => <NFTCard key={nft.tokenId} nft={nft} />)}
+            {nfts.map((nft) => <NFTCard key={`nft-${nft.tokenId}`} nft={nft} onProfilePage />)}
           </div>
         </div>
       )}
