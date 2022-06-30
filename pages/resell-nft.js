@@ -6,35 +6,44 @@ import { NFTContext } from '../context/NFTContext';
 import { Button, Input, Loader } from '../components';
 
 const ResellNFT = () => {
-  const {} = useContext(NFTContext);
+  const { createSale, isLoadingNFT } = useContext(NFTContext);
   const [price, setPrice] = useState('');
   const [image, setImage] = useState('');
   const router = useRouter();
-  const { tokenId, tokenURI } = router.query;
-
-  const [isLoading, setIsLoading] = useState(true);
+  const { id, tokenURI } = router.query;
 
   const fetchNFT = async () => {
+    if (!tokenURI) return;
+
     const { data } = await axios.get(tokenURI);
+
     setPrice(data.price);
     setImage(data.image);
-    setIsLoading(false);
   };
-  useEffect(() => {
-    if (tokenURI) fetchNFT();
-  }, [tokenURI]);
 
-  if (isLoading) {
+  useEffect(() => {
+    fetchNFT();
+  }, [id]);
+
+  const resell = async () => {
+    await createSale(tokenURI, price, true, id);
+
+    router.push('/');
+  };
+
+  if (isLoadingNFT) {
     return (
-      <div className="flexStart min-h-screen">
+      <div className="flexCenter" style={{ height: '51vh' }}>
         <Loader />
       </div>
     );
   }
+
   return (
     <div className="flex justify-center sm:px-4 p-12">
       <div className="w-3/5 md:w-full">
         <h1 className="font-poppins dark:text-white text-nft-black-1 font-semibold text-2xl">Resell NFT</h1>
+
         <Input
           inputType="number"
           title="Price"
@@ -49,9 +58,8 @@ const ResellNFT = () => {
             btnName="List NFT"
             btnType="primary"
             classStyles="rounded-xl"
-            // handleClick={resell}
+            handleClick={resell}
           />
-
         </div>
       </div>
     </div>
