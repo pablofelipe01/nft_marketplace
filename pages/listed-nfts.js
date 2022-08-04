@@ -14,7 +14,7 @@ const ListedNFTs = () => {
         setNfts(items);
         setIsLoading(false);
       });
-  }, []);
+  }, ['fetchMyNFTsOrListedNFTs']);
 
   if (isLoading) {
     return (

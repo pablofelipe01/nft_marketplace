@@ -6,6 +6,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'next/core-web-vitals',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -91,5 +92,10 @@ module.exports = {
         ],
       },
     ],
+  },
+  extends: 'next',
+  rules: {
+    'react/no-unescaped-entities': 'off',
+    '@next/next/no-page-custom-font': 'off',
   },
 };

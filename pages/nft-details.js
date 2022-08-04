@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import { NFTContext } from '../context/NFTContext';
 import { shortenAddress } from '../utils/shortenAddress';
-import { Button, Loader, Modal, NFTCard } from '../components';
+import { Button, Loader, Modal } from '../components';
 import images from '../assets';
 
 const PaymentBodyCmp = ({ nft, nftCurrency }) => (

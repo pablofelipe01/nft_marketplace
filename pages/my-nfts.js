@@ -20,7 +20,7 @@ const MyNFTs = () => {
         setNftsCopy(items);
         setIsLoading(false);
       });
-  }, []);
+  }, ['fetchMyNFTsOrListedNFTs']);
 
   useEffect(() => {
     const sortedNfts = [...nfts];
@@ -39,7 +39,7 @@ const MyNFTs = () => {
         setNfts(nfts);
         break;
     }
-  }, [activeSelect]);
+  }, ['setNfts', 'activeSelect']);
 
   const onHandleSearch = (value) => {
     const filteredNfts = nfts.filter(({ name }) => name.toLowerCase().includes(value.toLowerCase()));
@@ -75,7 +75,7 @@ const MyNFTs = () => {
         />
         <div className="flexCenter flex-col -mt-20 z-0">
           <div className="flexCenter w-40 h-40 sm:w-36 sm:h-36 p-1 bg-nft-black-2 rounded-full">
-            <Image src={images.creator1} className="rounded-full object-cover" objectFit="cover" />
+            <Image src={images.creator7} className="rounded-full object-cover" objectFit="cover" />
           </div>
           <p className="font-poppins dark:text-white text-nft-black-1 font-semibold text-2xl mt-6">{shortenAddress(currentAccount)}</p>
         </div>

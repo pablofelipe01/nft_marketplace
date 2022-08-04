@@ -105,6 +105,7 @@ const CreateNFT = () => {
             btnType="primary"
             classStyles="rounded-xl"
             handleClick={() => createNFT(formInput, fileUrl, router)}
+            // handleClick={createMarket}
           />
 
         </div>

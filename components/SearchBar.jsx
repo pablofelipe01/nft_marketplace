@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 
 import images from '../assets';
 
-const SearchBar = ({ activeSelect, setActiveSelect, handleSearch, clearSearch }) => {
+const SearchBar = ({ setActiveSelect, handleSearch, clearSearch }) => {
   const [search, setSearch] = useState('');
   const [toggle, setToggle] = useState(false);
   const [debouncedSearch, setDebouncedSearch] = useState(search);

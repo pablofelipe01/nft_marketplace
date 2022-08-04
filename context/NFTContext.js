@@ -12,7 +12,7 @@ const fetchContract = (signerOrProvider) => new ethers.Contract(MarketAddress, M
 export const NFTContext = React.createContext();
 
 export const NFTProvider = ({ children }) => {
-  const nftCurrency = 'ETH';
+  const nftCurrency = 'AZUL';
   const [currentAccount, setCurrentAccount] = useState('');
   const [isLoadingNFT, setIsLoadingNFT] = useState(false);
 
@@ -88,7 +88,7 @@ export const NFTProvider = ({ children }) => {
   };
   const fetchNFTs = async () => {
     setIsLoadingNFT(false);
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider('https://polygon-mumbai.g.alchemy.com/v2/AjGPeviK3zhCgbmkhiic9Y0MmsU06Rl0');
     const contract = fetchContract(provider);
     const data = await contract.fetchMarketItems();
 
