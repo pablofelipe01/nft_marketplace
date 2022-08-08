@@ -36,7 +36,7 @@ const Footer = () => {
         </div>
 
         <div className="flex-1 flexBetweenStart flex-wrap ml-10 md:ml-0 md:mt-8">
-          <FooterLinks heading="CryptoKet" items={['Explore', 'How it Works', 'Contact Us']} />
+          <FooterLinks heading="Marketing NFTs" items={['Explore', 'How it Works', 'Contact Us']} />
           <FooterLinks heading="Support" items={['Help Center', 'Terms of service', 'Legal', 'Privacy policy']} extraClasses="ml-4" />
         </div>
       </div>
