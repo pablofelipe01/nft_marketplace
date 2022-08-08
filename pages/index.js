@@ -101,7 +101,7 @@ const Home = () => {
       <div className="w-full minmd:w-4/5">
 
         <Banner
-          name={(<>, Education, Freelance? <br /> This is your Marketing NFTs Marketplace</>)}
+          name={(<>Agency, Education, Freelance? <br /> This is your Marketing NFTs Marketplace</>)}
           childStyles="md:text-4xl sm:text-2xl xs:text-xl text-left"
           parentStyles="justify-start mb-7 h-72 sm:h-60 p-12 xs:p-4 xs:h-44 rounded-3xl"
         />
