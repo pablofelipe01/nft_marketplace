@@ -6,7 +6,7 @@ import { create as ipfsHttpClient } from 'ipfs-http-client';
 
 import { MarketAddress, MarketAddressABI } from './constants';
 
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/ed273a88ecd0a7942eade3da869aae13');
+const client = ipfsHttpClient('https://ipfs.infura.io:5001/2DB7dA45dVYMqTEQ93N1Y7LPPQo');
 
 const fetchContract = (signerOrProvider) => new ethers.Contract(MarketAddress, MarketAddressABI, signerOrProvider);
 
