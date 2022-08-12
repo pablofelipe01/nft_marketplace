@@ -29,7 +29,7 @@ const Home = () => {
         setNftsCopy(items);
         setIsLoading(false);
       });
-  }, ['fetchNFTs']);
+  }, [fetchNFTs]);
 
   useEffect(() => {
     const sortedNfts = [...nfts];

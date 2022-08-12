@@ -6,7 +6,27 @@ import { create as ipfsHttpClient } from 'ipfs-http-client';
 
 import { MarketAddress, MarketAddressABI } from './constants';
 
-const client = ipfsHttpClient('https://nftmarket1968.infura-ipfs.io');
+const subdomainName = 'pabloacebedo'; 
+const projectId = '2DB7dA45dVYMqTEQ93N1Y7LPPQo';
+const projectSecret = 'ed273a88ecd0a7942eade3da869aae13';
+
+
+const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
+
+const endpointBasePath = "https://" + subdomainName + ".infura-ipfs.io/ipfs/"
+
+
+const client = ipfsHttpClient({
+  url: 'https://ipfs.infura.io:5001/api/v0',
+  headers: {
+    authorization,
+  },
+});
+
+
+
+
+
 
 const fetchContract = (signerOrProvider) => new ethers.Contract(MarketAddress, MarketAddressABI, signerOrProvider);
 
@@ -45,8 +65,8 @@ export const NFTProvider = ({ children }) => {
     try {
       const added = await client.add({ content: file });
 
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-
+      const url = endpointBasePath + added.path;
+      // const url = `https://ipfs.infura.io/ipfs/${added.path}`;
       return url;
     } catch (error) {
       console.log('error uploading file');
@@ -62,7 +82,8 @@ export const NFTProvider = ({ children }) => {
 
     try {
       const added = await client.add(data);
-      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+      const url = endpointBasePath + added.path;
+      // const url = `https://ipfs.infura.io/ipfs/${added.path}`;
       await createSale(url, price);
       router.push('/');
     } catch (error) {
