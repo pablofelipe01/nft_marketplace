@@ -10,8 +10,8 @@ const subdomainName = 'pabloacebedo';
 const projectId = process.env.NEXT_PUBLIC_IPFS_PROJECT_ID;
 const projectSecret = process.env.NEXT_PUBLIC_API_KEY_SECRET;
 
-
-const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
+const auth = `Basic ${Buffer.from(`${projectId}:${projectSecret}`).toString('base64')}`;
+// const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
 
 const endpointBasePath = "https://" + subdomainName + ".infura-ipfs.io/ipfs/"
 
