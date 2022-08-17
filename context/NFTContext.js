@@ -13,17 +13,24 @@ const projectSecret = process.env.NEXT_PUBLIC_API_KEY_SECRET;
 const auth = `Basic ${Buffer.from(`${projectId}:${projectSecret}`).toString('base64')}`;
 // const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
 
-const endpointBasePath = "https://" + subdomainName + ".infura-ipfs.io/ipfs/"
+// const endpointBasePath = "https://" + subdomainName + ".infura-ipfs.io/ipfs/"
 
+
+// const client = ipfsHttpClient({
+//   url: 'https://ipfs.infura.io:5001/api/v0',
+//   headers: {
+//     authorization,
+//   },
+// });
 
 const client = ipfsHttpClient({
-  url: 'https://ipfs.infura.io:5001/api/v0',
+  host: 'ipfs.infura.io',
+  port: 5001,
+  protocol: 'https',
   headers: {
-    authorization,
+    authorization: auth,
   },
 });
-
-
 
 
 
@@ -62,14 +69,13 @@ export const NFTProvider = ({ children }) => {
   };
 
   const uploadToIPFS = async (file, setFileUrl) => {
+    const subdomain = 'https://pabloacebedo.infura-ipfs.io';
     try {
       const added = await client.add({ content: file });
-
-      const url = endpointBasePath + added.path;
-      
-      return url;
+      const URL = `${subdomain}/ipfs/${added.path}`;
+      return URL;
     } catch (error) {
-      console.log('error uploading file');
+      console.log('Error uploading file to IPFS.');
     }
   };
 
@@ -82,7 +88,7 @@ export const NFTProvider = ({ children }) => {
 
     try {
       const added = await client.add(data);
-      const url = endpointBasePath + added.path;
+      const url = `${subdomain}/ipfs/${added.path}`;
       
       await createSale(url, price);
       router.push('/');
