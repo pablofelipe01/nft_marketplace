@@ -6,9 +6,9 @@ import { create as ipfsHttpClient } from 'ipfs-http-client';
 
 import { MarketAddress, MarketAddressABI } from './constants';
 
-const subdomainName = 'pabloacebedo'; 
-const projectId = '2DB7dA45dVYMqTEQ93N1Y7LPPQo';
-const projectSecret = 'ed273a88ecd0a7942eade3da869aae13';
+const subdomainName = 'branson'; 
+const projectId = '2IY2f2FfRm2gzuJJBgHXJp8rpU0';
+const projectSecret = '8a0ceed1498e350b41f908d311c1e1da';
 
 
 const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
@@ -17,7 +17,7 @@ const endpointBasePath = "https://" + subdomainName + ".infura-ipfs.io/ipfs/"
 
 
 const client = ipfsHttpClient({
-  url: 'https://ipfs.infura.io:5001/api/v0',
+  url: 'https://ipfs.infura.io:5001',
   headers: {
     authorization,
   },
@@ -110,7 +110,7 @@ export const NFTProvider = ({ children }) => {
   };
   const fetchNFTs = async () => {
     setIsLoadingNFT(false);
-    const provider = new ethers.providers.JsonRpcProvider('https://polygon-mumbai.g.alchemy.com/v2/AjGPeviK3zhCgbmkhiic9Y0MmsU06Rl0');
+    const provider = new ethers.providers.JsonRpcProvider('https://wandering-serene-valley.bsc-testnet.quiknode.pro/20a11d685558ac948bd7aa9aa49dfea19cdd6ccb/');
     const contract = fetchContract(provider);
     const data = await contract.fetchMarketItems();
 

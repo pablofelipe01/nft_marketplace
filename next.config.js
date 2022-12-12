@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-      domains: ['pabloacebedo.infura-ipfs.io'],
+      domains: ['branson.infura-ipfs.io'],
   },
 };
 

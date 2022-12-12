@@ -9,11 +9,11 @@ module.exports = {
     hardhat: {
       chainId: 1337,
     },
-    mumbai: {
-      url: 'https://polygon-mumbai.g.alchemy.com/v2/AjGPeviK3zhCgbmkhiic9Y0MmsU06Rl0',
+    bsc: {
+      url: 'https://wandering-serene-valley.bsc-testnet.quiknode.pro/20a11d685558ac948bd7aa9aa49dfea19cdd6ccb/',
       accounts: [privateKey],
     },
-    // https://rpc-mumbai.maticvigil.com
+    
   },
   solidity: '0.8.4',
 };

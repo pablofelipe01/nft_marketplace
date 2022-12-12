@@ -12,6 +12,7 @@
     "@nomiclabs/hardhat-ethers": "^2.0.6",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "@openzeppelin/contracts": "4.5.0",
+    "alchemy-sdk": "^2.2.3",
     "axios": "0.26.0",
     "chai": "^4.3.6",
     "ethereum-waffle": "^3.4.4",
